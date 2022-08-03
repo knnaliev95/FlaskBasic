@@ -13,16 +13,21 @@
                 <th>Id</th>
                 <th>ProductName</th>
                 <th>ProductPrice</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
+            {% for product in products %}
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><a href="#">Update</a></td>
-                <td><a href="#">Delete</a></td>
+                <td>{{product.id}}</td>
+                <td>{{product.productName}}</td>
+                <td>{{product.productPrice}}</td>
+                <td>
+                    <a href="/admin/product/update/{{product.id}}">Update</a>
+                    <a href="/admin/product/delete/{{product.id}}">Delete</a>
+                </td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </body>

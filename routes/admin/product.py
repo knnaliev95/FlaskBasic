@@ -9,7 +9,7 @@ def add_product():
         product=Product(productName=productName,productPrice=productPrice)
         db.session.add(product)
         db.session.commit()
-
+        return redirect('/admin/product/list')
     return render_template('/admin/product/add.html')
 
 @app.route('/admin/product/list', methods=['GET','POST'])
@@ -19,8 +19,19 @@ def view_product():
 
 @app.route('/admin/products/update/<id>', methods=['GET','POST'])
 def update_product(id):
-    pass
+    product=Product.query.get(id)
+    if request.method=='POST':
+        p_name=request.form['Product_Name']
+        p_price=request.form['Product_Price']
+        product.productName=p_name
+        product.productPrice=p_price
+        db.session.commit()
+        return redirect('/admin/product/list')
+    return render_template('/admin/product/update.html',product=product)
 
 app.route('/admin/product/delete/<id>', methods=['GET','POST'])
 def delete_product(id):
-    pass
+    product=Product.query.get(id)
+    db.session.delete(product)
+    db.session.commit()
+    return redirect('/admin/product/list')
