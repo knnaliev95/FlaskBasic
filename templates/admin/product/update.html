@@ -7,9 +7,9 @@
     <title>Update</title>
 </head>
 <body>
-    <form action="/admin/product/delete/{{product.id}}" method="POST">
-        <input type="text" placeholder="Product_Name" value="{{product.productName}}">
-        <input type="text" placeholder="Product_Price" value="{{product.productPrice}}">
+    <form action="/admin/product/update/{{product.id}}" method="POST">
+        <input type="text" placeholder="Product_Name" name="p_name" value="{{product.productName}}">
+        <input type="text" placeholder="Product_Price" name="p_price" value="{{product.productPrice}}">
         <input type="submit" value="Update">
     </form>
 </body>

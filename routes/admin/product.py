@@ -17,12 +17,12 @@ def view_product():
     products=Product.query.all()
     return render_template('admin/product/list.html',products=products)
 
-@app.route('/admin/products/update/<id>', methods=['GET','POST'])
+@app.route('/admin/product/update/<id>', methods=['GET','POST'])
 def update_product(id):
     product=Product.query.get(id)
     if request.method=='POST':
-        p_name=request.form['Product_Name']
-        p_price=request.form['Product_Price']
+        p_name=request.form['p_name']
+        p_price=request.form['p_price']
         product.productName=p_name
         product.productPrice=p_price
         db.session.commit()
