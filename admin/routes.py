@@ -10,7 +10,7 @@ def product_add():
         product=Product(productName=productName,productPrice=productPrice)
         db.session.add(product)
         db.session.commit()
-        return redirect('/list')
+        return redirect('/admin/list')
     return render_template('add.html')
 
 @admin_bp.route('/list', methods=['GET','POST'])
@@ -27,7 +27,7 @@ def product_update(id):
         product.productName=p_name
         product.productPrice=p_price
         db.session.commit()
-        return redirect('/list')
+        return redirect('/admin/list')
     return render_template('update.html', product=product)
 
 @admin_bp.route('/delete/<id>', methods=['GET','POST'])
@@ -35,4 +35,4 @@ def product_delete(id):
     product=Product.query.get(id)
     db.session.delete(product)
     db.session.commit()
-    return redirect('/list')
+    return redirect('/admin/list')
