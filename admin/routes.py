@@ -1,17 +1,19 @@
 from flask import render_template,redirect,request
 from admin import admin_bp
 from models import *
+from admin.forms import ProductForm
 
 @admin_bp.route('/add', methods=['GET','POST'])
 def product_add():
+    productForm=ProductForm()
+    from models import Product
+    from start import db
     if request.method=='POST':
-        productName=request.form['productName']
-        productPrice=request.form['productPrice']
-        product=Product(productName=productName,productPrice=productPrice)
+        product=Product(productName=productForm.name.data, productPrice=productForm.price.data, add_date=productForm.date.data)
         db.session.add(product)
         db.session.commit()
         return redirect('/admin/list')
-    return render_template('add.html')
+    return render_template('add.html', productForm=productForm)
 
 @admin_bp.route('/list', methods=['GET','POST'])
 def product_list():

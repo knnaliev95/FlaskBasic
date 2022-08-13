@@ -13,6 +13,7 @@
                 <th>Id</th>
                 <th>ProductName</th>
                 <th>ProductPrice</th>
+                <th>Add date</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{product.id}}</td>
                 <td>{{product.productName}}</td>
                 <td>{{product.productPrice}}</td>
+                <td>{{product.add_date}}</td>
                 <td>
                     <a href="/admin/update/{{product.id}}">Update</a>
                     <a href="/admin/delete/{{product.id}}">Delete</a>

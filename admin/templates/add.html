@@ -8,9 +8,10 @@
 </head>
 <body>
     <form action="/admin/add" method="POST">
-        <input type="text" placeholder="Product name" name="productName">
-        <input type="text" placeholder="Product price" name="productPrice">
-        <input type="submit" value="ADD">
+        {{ productForm.name(placeholder='Product Name')}}
+        {{ productForm.price(placeholder='Product Price')}}
+        {{ productForm.date(placeholder='Add date')}}
+        {{ productForm.submit(value='Add data')}}
     </form>
 </body>
 </html>
