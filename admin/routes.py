@@ -22,15 +22,16 @@ def product_list():
 
 @admin_bp.route('/update/<id>', methods=['GET','POST'])
 def product_update(id):
+    productForm=ProductForm()
+    from models import Product
+    from start import db
     product=Product.query.get(id)
     if request.method=='POST':
-        p_name=request.form['p_name']
-        p_price=request.form['p_price']
-        product.productName=p_name
-        product.productPrice=p_price
+        product.productName=productForm.name.data
+        product.productPrice=productForm.price.data
         db.session.commit()
         return redirect('/admin/list')
-    return render_template('update.html', product=product)
+    return render_template('update.html', product=product, productForm=productForm)
 
 @admin_bp.route('/delete/<id>', methods=['GET','POST'])
 def product_delete(id):
